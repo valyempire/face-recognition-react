@@ -1,6 +1,7 @@
 import React from "react";
 
-const Rank = ({ name, entries }) => {
+const Rank = (props) => {
+  const { name, entries } = props;
   return (
     <div>
       <div className="white f3">{`${name}, your current entry count is`}</div>
