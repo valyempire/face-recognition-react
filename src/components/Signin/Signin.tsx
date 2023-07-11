@@ -1,31 +1,27 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { SigninProps } from "./Signin.types";
 
-const Register = (props) => {
-  const { loadUser, onRouteChange } = props;
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export const Signin: React.FC<SigninProps> = (props) => {
+  const { onRouteChange, loadUser } = props;
 
-  const onNameChange = (event) => {
-    setName(event.target.value);
+  const [signInEmail, setSignInEmail] = useState("");
+  const [signInPassword, setSignInPassword] = useState("");
+
+  const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSignInEmail(event.target.value);
   };
 
-  const onEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const onPasswordChange = (event) => {
-    setPassword(event.target.value);
+  const onPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSignInPassword(event.target.value);
   };
 
   const onSubmitSignIn = () => {
-    fetch("http://localhost:3001/register", {
+    fetch("http://localhost:3001/signin", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email,
-        password,
-        name,
+        email: signInEmail,
+        password: signInPassword,
       }),
     })
       .then((response) => response.json())
@@ -42,19 +38,7 @@ const Register = (props) => {
       <main className="pa4 black-80">
         <div className="measure">
           <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-            <legend className="f1 fw6 ph0 mh0">Register</legend>
-            <div className="mt3">
-              <label className="db fw6 lh-copy f6" htmlFor="name">
-                Name
-              </label>
-              <input
-                className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
-                type="text"
-                name="name"
-                id="name"
-                onChange={onNameChange}
-              />
-            </div>
+            <legend className="f1 fw6 ph0 mh0">Sign In</legend>
             <div className="mt3">
               <label className="db fw6 lh-copy f6" htmlFor="email-address">
                 Email
@@ -85,13 +69,19 @@ const Register = (props) => {
               onClick={onSubmitSignIn}
               className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
               type="submit"
-              value="Register"
+              value="Sign in"
             />
+          </div>
+          <div className="lh-copy mt3">
+            <p
+              onClick={() => onRouteChange("register")}
+              className="f6 link dim black db pointer"
+            >
+              Register
+            </p>
           </div>
         </div>
       </main>
     </article>
   );
 };
-
-export default Register;

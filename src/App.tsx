@@ -1,38 +1,34 @@
 import "./App.css";
 import ParticlesBg from "particles-bg";
-import { Navigation } from "./components/Navigation/Navigation";
+import { Navigation } from "./components/Navigation";
 import { Logo } from "./components/Logo/Logo";
 import { ImageLinkForm } from "./components/ImageLinkForm";
-import Rank from "./components/Rank/Rank";
+import { Rank } from "./components/Rank/Rank";
 import { FaceRecognition } from "./components/FaceRecognition";
-import Signin from "./components/Signin/Signin";
-import Register from "./components/Register/Register";
+import { Signin } from "./components/Signin/Signin";
+import { Register } from "./components/Register";
 import { useState } from "react";
+import { User, BoundingBox } from "./App.types";
 
-const initialState = {
-  input: "",
-  imageUrl: "",
-  box: {},
-  route: "signin",
-  isSignedIn: false,
-  user: {
+const App: React.FC = () => {
+  const [input, setInput] = useState<string>("");
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const [box, setBox] = useState<BoundingBox>({
+    topRow: 0,
+    rightCol: 0,
+    bottomRow: 0,
+    leftCol: 0,
+  });
+  const [route, setRoute] = useState<string>("signin");
+  const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
+  const [user, setUser] = useState<User>({
     id: "",
     name: "",
     email: "",
     entries: 0,
     joined: "",
-  },
-};
-
-const App = () => {
-  const [input, setInput] = useState(initialState.input);
-  const [imageUrl, setImageUrl] = useState(initialState.imageUrl);
-  const [box, setBox] = useState(initialState.box);
-  const [route, setRoute] = useState(initialState.route);
-  const [isSignedIn, setIsSignedIn] = useState(initialState.isSignedIn);
-  const [user, setUser] = useState(initialState.user);
-
-  const loadUser = (data) => {
+  });
+  const loadUser = (data: User) => {
     setUser({
       id: data.id,
       name: data.name,
@@ -42,10 +38,10 @@ const App = () => {
     });
   };
 
-  const calculateFaceLocation = (data) => {
+  const calculateFaceLocation = (data: any) => {
     const clarifaiFace =
       data.outputs[0].data.regions[0].region_info.bounding_box;
-    const image = document.getElementById("inputimage");
+    const image = document.getElementById("inputimage") as HTMLImageElement;
     const width = Number(image.width);
     const height = Number(image.height);
     return {
@@ -56,11 +52,11 @@ const App = () => {
     };
   };
 
-  const displayFaceBox = (box) => {
+  const displayFaceBox = (box: BoundingBox) => {
     setBox(box);
   };
 
-  const onInputChange = (event) => {
+  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
   };
 
@@ -98,14 +94,20 @@ const App = () => {
       .catch((error) => console.log("error", error));
   };
 
-  const onRouteChange = (route) => {
+  const onRouteChange = (route: string) => {
     if (route === "signout") {
-      setInput(initialState.input);
-      setImageUrl(initialState.imageUrl);
-      setBox(initialState.box);
-      setRoute(initialState.route);
-      setIsSignedIn(initialState.isSignedIn);
-      setUser(initialState.user);
+      setInput("");
+      setImageUrl("");
+      setBox({} as BoundingBox);
+      setRoute("signin");
+      setIsSignedIn(false);
+      setUser({
+        id: "",
+        name: "",
+        email: "",
+        entries: 0,
+        joined: "",
+      });
     } else if (route === "home") {
       setIsSignedIn(true);
     }

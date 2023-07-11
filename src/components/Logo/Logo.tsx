@@ -1,7 +1,7 @@
 import React from "react";
 // import Tilt from "react-tilt";
 import Tilt from "react-parallax-tilt";
-import brain from "../../assets/backend.png";
+import brain from "../../assets/brain-png.webp";
 import "./Logo.css";
 
 export const Logo: React.FC = () => {

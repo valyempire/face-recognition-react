@@ -1,6 +1,6 @@
-import React from "react";
+import { RankProps } from "./Rank.types";
 
-const Rank = (props) => {
+export const Rank: React.FC<RankProps> = (props) => {
   const { name, entries } = props;
   return (
     <div>
@@ -9,5 +9,3 @@ const Rank = (props) => {
     </div>
   );
 };
-
-export default Rank;
