@@ -1,7 +1,7 @@
-import React from "react";
 import "./ImageLinkForm.css";
+import { ImageLinkFormProps } from "./ImageLinkForm.types";
 
-const ImageLinkForm = (props) => {
+export const ImageLinkForm: React.FC<ImageLinkFormProps> = (props) => {
   const { onInputChange, onButtonSubmit } = props;
   return (
     <div>
@@ -26,4 +26,3 @@ const ImageLinkForm = (props) => {
     </div>
   );
 };
-export default ImageLinkForm;

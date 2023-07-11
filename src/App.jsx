@@ -1,11 +1,10 @@
 import "./App.css";
 import ParticlesBg from "particles-bg";
-import Navigation from "./components/Navigation/Navigation";
-import Logo from "./components/Logo/Logo";
-import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
+import { Navigation } from "./components/Navigation/Navigation";
+import { Logo } from "./components/Logo/Logo";
+import { ImageLinkForm } from "./components/ImageLinkForm";
 import Rank from "./components/Rank/Rank";
-import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
-import React from "react";
+import { FaceRecognition } from "./components/FaceRecognition";
 import Signin from "./components/Signin/Signin";
 import Register from "./components/Register/Register";
 import { useState } from "react";

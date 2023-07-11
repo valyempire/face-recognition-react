@@ -1,6 +1,6 @@
-import React from "react";
+import { NavigationProps } from "./Navigation.types";
 
-const Navigation = (props) => {
+export const Navigation: React.FC<NavigationProps> = (props) => {
   const { onRouteChange, isSignedIn } = props;
   if (isSignedIn) {
     return (
@@ -32,4 +32,3 @@ const Navigation = (props) => {
     );
   }
 };
-export default Navigation;
