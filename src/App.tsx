@@ -19,6 +19,7 @@ const App: React.FC = () => {
     bottomRow: 0,
     leftCol: 0,
   });
+
   const [route, setRoute] = useState<string>("signin");
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
   const [user, setUser] = useState<User>({
@@ -28,6 +29,7 @@ const App: React.FC = () => {
     entries: 0,
     joined: "",
   });
+
   const loadUser = (data: User) => {
     setUser({
       id: data.id,
