@@ -1,22 +1,21 @@
 import React from "react";
-// import Tilt from "react-tilt";
-import Tilt from "react-parallax-tilt";
+// import Tilt from "react-parallax-tilt";
 import brain from "../../assets/brain-png.webp";
-import "./Logo.css";
+
+import { TiltContainer, ImgBrain } from "./Logo.styles";
 
 export const Logo: React.FC = () => {
   return (
     //
     <div className="ma4 mt0">
-      <Tilt
+      <TiltContainer
         className="Tilt br2 shadow-2"
-        // options={{ max: 55 }}
         style={{ height: 150, width: 150 }}
       >
         <div className="Tilt-inner pa3">
-          <img alt="logo" src={brain} />
+          <ImgBrain alt="logo" src={brain} />
         </div>
-      </Tilt>
+      </TiltContainer>
     </div>
   );
 };

@@ -21,6 +21,21 @@ export const Container = styled("div")(({ theme }) => {
 });
 
 /**
+ * Styles the Paragraph
+ */
+export const Paragraph = styled("p")(({ theme }) => {
+  return {
+    fontSize: 22,
+    [theme.breakpoints.down("md")]: {
+      fontSize: 25,
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+    },
+  };
+});
+
+/**
  * Styles the Button
  */
 export const Button = styled("button")(({ theme }) => {
@@ -29,10 +44,12 @@ export const Button = styled("button")(({ theme }) => {
     marginLeft: 10,
     [theme.breakpoints.down("md")]: {
       width: "18%",
+      fontSize: 21,
     },
     [theme.breakpoints.down("sm")]: {
       width: "38%",
       padding: 2,
+      fontSize: 12,
     },
   };
 });
@@ -47,9 +64,11 @@ export const Input = styled("input")(({ theme }) => {
     width: "100%",
     [theme.breakpoints.down("md")]: {
       width: "80%",
+      fontSize: 21,
     },
     [theme.breakpoints.down("sm")]: {
       width: "100%",
+      fontSize: 12,
     },
   };
 });

@@ -24,11 +24,12 @@ export const Image = styled("img")(({ theme }) => {
   return {
     maxWidth: "100%",
     marginTop: 10,
+    marginBottom: 10,
     [theme.breakpoints.down("md")]: {
-      width: "88%",
+      // width: "90%",
     },
     [theme.breakpoints.down("sm")]: {
-      width: "92%",
+      width: "85%",
     },
   };
 });
