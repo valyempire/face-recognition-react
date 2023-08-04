@@ -8,6 +8,8 @@ import { styled } from "@mui/system";
  */
 export const Container = styled("div")(({ theme }) => {
   return {
+    display: "flex",
+    justifyContent: "center",
     width: 700,
     background: "linear-gradient(89deg, #2ebffd 0%, #0020ed 100%)",
     [theme.breakpoints.down("md")]: {
@@ -17,6 +19,16 @@ export const Container = styled("div")(({ theme }) => {
       width: "92%",
       padding: 11,
     },
+  };
+});
+
+/**
+ * Styles the InputContainer
+ */
+export const InputContainer = styled("div")(({ theme }) => {
+  return {
+    display: "flex",
+    justifyContent: "center",
   };
 });
 
@@ -59,6 +71,8 @@ export const Button = styled("button")(({ theme }) => {
  */
 export const Input = styled("input")(({ theme }) => {
   return {
+    display: "flex",
+    justifyContent: "center",
     marginRight: "auto",
     marginLeft: "auto",
     width: "100%",

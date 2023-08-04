@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Container } from "./Signin.styles";
+
 import { SigninProps } from "./Signin.types";
 
 export const Signin: React.FC<SigninProps> = (props) => {
@@ -34,7 +36,7 @@ export const Signin: React.FC<SigninProps> = (props) => {
   };
 
   return (
-    <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
+    <Container className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
       <main className="pa4 black-80">
         <div className="measure">
           <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
@@ -82,6 +84,6 @@ export const Signin: React.FC<SigninProps> = (props) => {
           </div>
         </div>
       </main>
-    </article>
+    </Container>
   );
 };

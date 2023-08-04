@@ -1,4 +1,7 @@
 import { useState } from "react";
+
+import { Container } from "./Register.styles";
+
 import { RegisterProps, User } from "./Register.types";
 
 export const Register: React.FC<RegisterProps> = (props) => {
@@ -39,7 +42,7 @@ export const Register: React.FC<RegisterProps> = (props) => {
   };
 
   return (
-    <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
+    <Container className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
       <main className="pa4 black-80">
         <div className="measure">
           <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
@@ -91,6 +94,6 @@ export const Register: React.FC<RegisterProps> = (props) => {
           </div>
         </div>
       </main>
-    </article>
+    </Container>
   );
 };

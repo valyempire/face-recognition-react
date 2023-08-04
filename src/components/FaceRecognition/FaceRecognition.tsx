@@ -1,7 +1,7 @@
 /**
  * Imports styles
  */
-import { BoundingBox, Image } from "./FaceRecognition.styles";
+import { Container, BoundingBox, Image } from "./FaceRecognition.styles";
 
 /**
  * Imports types
@@ -14,7 +14,7 @@ import { FaceRecognitionProps } from "./FaceRecognition.types";
 export const FaceRecognition: React.FC<FaceRecognitionProps> = (props) => {
   const { imageUrl, box } = props;
   return (
-    <div className="center ma">
+    <Container className="center ma">
       <div className="absolute mt2">
         <Image
           id="inputimage"
@@ -33,6 +33,6 @@ export const FaceRecognition: React.FC<FaceRecognitionProps> = (props) => {
           }}
         ></BoundingBox>
       </div>
-    </div>
+    </Container>
   );
 };

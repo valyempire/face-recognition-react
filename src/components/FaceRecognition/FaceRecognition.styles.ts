@@ -4,6 +4,16 @@
 import { styled } from "@mui/system";
 
 /**
+ * Styles the Container
+ */
+export const Container = styled("div")(() => {
+  return {
+    display: "flex",
+    justifyContent: "center",
+  };
+});
+
+/**
  * Styles the Bounding Box
  */
 export const BoundingBox = styled("div")(() => {

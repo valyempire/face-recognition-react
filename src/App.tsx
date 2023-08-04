@@ -1,4 +1,4 @@
-import "./App.css";
+import { Container } from "./App.styles";
 import ParticlesBg from "particles-bg";
 import { Navigation } from "./components/Navigation";
 import { Logo } from "./components/Logo/Logo";
@@ -117,7 +117,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="App">
+    <Container className="App">
       <ParticlesBg type="polygon" bg={true} />
       <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange} />
       {route === "home" ? (
@@ -135,7 +135,7 @@ const App: React.FC = () => {
       ) : (
         <Register loadUser={loadUser} onRouteChange={onRouteChange} />
       )}
-    </div>
+    </Container>
   );
 };
 

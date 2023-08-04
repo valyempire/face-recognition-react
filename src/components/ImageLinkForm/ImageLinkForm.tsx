@@ -1,7 +1,13 @@
 /**
  * Imports styled
  */
-import { Paragraph, Container, Button, Input } from "./ImageLinkForm.styles";
+import {
+  Paragraph,
+  Container,
+  Button,
+  Input,
+  InputContainer,
+} from "./ImageLinkForm.styles";
 
 /**
  * Imports types
@@ -18,7 +24,7 @@ export const ImageLinkForm: React.FC<ImageLinkFormProps> = (props) => {
       <Paragraph className="f3 white text">
         {"This Magic Brain will detect faces in your pictures. Give it a try."}
       </Paragraph>
-      <div className="center">
+      <InputContainer className="center">
         <Container className="form center pa4 br3 shadow-5">
           <Input
             className="f4 pa2 w-70 center"
@@ -32,7 +38,7 @@ export const ImageLinkForm: React.FC<ImageLinkFormProps> = (props) => {
             Detect
           </Button>
         </Container>
-      </div>
+      </InputContainer>
     </div>
   );
 };
