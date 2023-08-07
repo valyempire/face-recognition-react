@@ -65,7 +65,14 @@ const App: React.FC = () => {
   const onButtonSubmit = () => {
     setImageUrl(input);
 
-    fetch("http://localhost:3001/clarifai", {
+    // fetch("http://localhost:3001/clarifai", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     input: input,
+    //   }),
+    // })
+    fetch("https://vali-smartbrain-backend.netlify.app/clarifai", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
