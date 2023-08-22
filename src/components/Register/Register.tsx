@@ -1,14 +1,14 @@
 import { useState } from "react";
-
 import { Container } from "./Register.styles";
-
 import { RegisterProps, User } from "./Register.types";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Register: React.FC<RegisterProps> = (props) => {
   const { loadUser, onRouteChange } = props;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
 
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -36,6 +36,7 @@ export const Register: React.FC<RegisterProps> = (props) => {
       .then((user: User) => {
         if (user.id) {
           loadUser(user);
+          login();
           onRouteChange("home");
         }
       });

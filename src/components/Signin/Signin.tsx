@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Container } from "./Signin.styles";
-
 import { SigninProps } from "./Signin.types";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Signin: React.FC<SigninProps> = (props) => {
   const { onRouteChange, loadUser } = props;
-
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
+  const { login } = useAuth();
 
   const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSignInEmail(event.target.value);
@@ -30,6 +30,7 @@ export const Signin: React.FC<SigninProps> = (props) => {
       .then((user) => {
         if (user.id) {
           loadUser(user);
+          login();
           onRouteChange("home");
         }
       });

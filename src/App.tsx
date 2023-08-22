@@ -9,6 +9,7 @@ import { Signin } from "./components/Signin/Signin";
 import { Register } from "./components/Register";
 import { useState } from "react";
 import { User, BoundingBox } from "./App.types";
+import { AuthProvider, useAuth } from "./hooks/useAuth";
 
 const App: React.FC = () => {
   const [input, setInput] = useState<string>("");
@@ -19,7 +20,6 @@ const App: React.FC = () => {
     bottomRow: 0,
     leftCol: 0,
   });
-
   const [route, setRoute] = useState<string>("signin");
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
   const [user, setUser] = useState<User>({
@@ -29,6 +29,7 @@ const App: React.FC = () => {
     entries: 0,
     joined: "",
   });
+  const { isAuthenticated } = useAuth();
 
   const loadUser = (data: User) => {
     setUser({
@@ -65,14 +66,7 @@ const App: React.FC = () => {
   const onButtonSubmit = () => {
     setImageUrl(input);
 
-    // fetch("http://localhost:3001/clarifai", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //     input: input,
-    //   }),
-    // })
-    fetch("https://vali-smartbrain-backend.netlify.app/clarifai", {
+    fetch("http://localhost:3001/clarifai", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -124,25 +118,27 @@ const App: React.FC = () => {
   };
 
   return (
-    <Container className="App">
-      <ParticlesBg type="polygon" bg={true} />
-      <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange} />
-      {route === "home" ? (
-        <div>
-          <Logo />
-          <Rank name={user.name} entries={user.entries} />
-          <ImageLinkForm
-            onInputChange={onInputChange}
-            onButtonSubmit={onButtonSubmit}
-          />
-          <FaceRecognition box={box} imageUrl={imageUrl} />
-        </div>
-      ) : route === "signin" ? (
-        <Signin loadUser={loadUser} onRouteChange={onRouteChange} />
-      ) : (
-        <Register loadUser={loadUser} onRouteChange={onRouteChange} />
-      )}
-    </Container>
+    <AuthProvider>
+      <Container className="App">
+        <ParticlesBg type="polygon" bg={true} />
+        <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange} />
+        {route === "home" ? (
+          <div>
+            <Logo />
+            <Rank name={user.name} entries={user.entries} />
+            <ImageLinkForm
+              onInputChange={onInputChange}
+              onButtonSubmit={onButtonSubmit}
+            />
+            <FaceRecognition box={box} imageUrl={imageUrl} />
+          </div>
+        ) : route === "signin" ? (
+          <Signin loadUser={loadUser} onRouteChange={onRouteChange} />
+        ) : (
+          <Register loadUser={loadUser} onRouteChange={onRouteChange} />
+        )}
+      </Container>
+    </AuthProvider>
   );
 };
 
