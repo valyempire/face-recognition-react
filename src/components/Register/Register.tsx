@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { Container } from "./Register.styles";
-import { RegisterProps, User } from "./Register.types";
+import { RegisterProps } from "./Register.types";
 import { useAuth } from "../../hooks/useAuth";
+import { useHistory, Redirect } from "react-router-dom";
 
 export const Register: React.FC<RegisterProps> = (props) => {
-  const { loadUser, onRouteChange } = props;
+  const { loadUser } = props;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
+  const { isAuthenticated } = useAuth();
+  const history = useHistory();
 
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -22,6 +24,16 @@ export const Register: React.FC<RegisterProps> = (props) => {
     setPassword(event.target.value);
   };
 
+  const onRouteChange = (route: string) => {
+    if (route === "home") {
+      history.push("/home");
+    }
+  };
+
+  if (isAuthenticated) {
+    return <Redirect to={"/home"} />;
+  }
+
   const onSubmitSignIn = () => {
     fetch("http://localhost:3001/register", {
       method: "post",
@@ -33,10 +45,9 @@ export const Register: React.FC<RegisterProps> = (props) => {
       }),
     })
       .then((response) => response.json())
-      .then((user: User) => {
+      .then((user) => {
         if (user.id) {
           loadUser(user);
-          login();
           onRouteChange("home");
         }
       });
@@ -58,6 +69,7 @@ export const Register: React.FC<RegisterProps> = (props) => {
                 name="name"
                 id="name"
                 onChange={onNameChange}
+                required
               />
             </div>
             <div className="mt3">
@@ -70,6 +82,7 @@ export const Register: React.FC<RegisterProps> = (props) => {
                 name="email-address"
                 id="email-address"
                 onChange={onEmailChange}
+                required
               />
             </div>
             <div className="mv3">
@@ -82,6 +95,7 @@ export const Register: React.FC<RegisterProps> = (props) => {
                 name="password"
                 id="password"
                 onChange={onPasswordChange}
+                required
               />
             </div>
           </fieldset>

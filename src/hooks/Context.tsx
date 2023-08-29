@@ -14,9 +14,9 @@ export interface ProviderProps {
  */
 export interface ProviderValues {
   isAuthenticated: boolean;
+  user: UserData;
   login: () => void;
   logout: () => void;
-  user: UserData;
   setUser: React.Dispatch<React.SetStateAction<UserData>>;
 }
 

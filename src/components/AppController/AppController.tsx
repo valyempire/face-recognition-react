@@ -1,15 +1,14 @@
 import { Container } from "./AppController.styles";
 import ParticlesBg from "particles-bg";
 import { Navigation } from "../Navigation";
-import { Logo } from "../Logo/";
-import { ImageLinkForm } from "../ImageLinkForm";
-import { Rank } from "../Rank";
-import { FaceRecognition } from "../FaceRecognition";
+
 import { Signin } from "../Signin/";
 import { Register } from "../Register";
 import { useState } from "react";
 import { BoundingBox, UserData } from "./AppController.types";
 import { AuthProvider, useAuth } from "../../hooks";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Home } from "../Home/Home";
 
 export const AppController: React.FC = () => {
   const [input, setInput] = useState<string>("");
@@ -116,22 +115,25 @@ export const AppController: React.FC = () => {
     <AuthProvider>
       <Container className="App">
         <ParticlesBg type="polygon" bg={true} />
-        <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange} />
-        {route === "home" ? (
-          <div>
-            <Logo />
-            <Rank name={user.name} entries={user.entries} />
-            <ImageLinkForm
-              onInputChange={onInputChange}
-              onButtonSubmit={onButtonSubmit}
-            />
-            <FaceRecognition box={box} imageUrl={imageUrl} />
-          </div>
-        ) : route === "signin" ? (
-          <Signin loadUser={loadUser} onRouteChange={onRouteChange} />
-        ) : (
-          <Register loadUser={loadUser} onRouteChange={onRouteChange} />
-        )}
+        <BrowserRouter>
+          <Switch>
+            <Route path={"/signin"}>
+              <Signin loadUser={loadUser} onRouteChange={onRouteChange} />
+            </Route>
+            <Route path={"/register"}>
+              <Register loadUser={loadUser} onRouteChange={onRouteChange} />
+            </Route>
+            <Route path={"/home"}>
+              <Home
+                onButtonSubmit={onButtonSubmit}
+                onInputChange={onInputChange}
+                box={box}
+                imageUrl={imageUrl}
+              />
+            </Route>
+          </Switch>
+          <Navigation />
+        </BrowserRouter>
       </Container>
     </AuthProvider>
   );

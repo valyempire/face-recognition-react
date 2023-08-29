@@ -5,6 +5,7 @@ import { ImageLinkForm } from "../ImageLinkForm";
 import { FaceRecognition } from "../FaceRecognition";
 import { useAuth } from "../../hooks";
 import { BoundingBox } from "../AppController/AppController.types";
+import { Redirect } from "react-router-dom";
 
 interface HomeProps {
   onInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -16,7 +17,11 @@ interface HomeProps {
 export const Home: React.FC<HomeProps> = (props) => {
   const { onButtonSubmit, onInputChange, box, imageUrl } = props;
 
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return <Redirect to={"/signin"} />;
+  }
 
   return (
     <div>
