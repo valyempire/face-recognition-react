@@ -1,5 +1,7 @@
 import { createContext } from "react";
 
+import { UserData } from "../components/AppController/AppController.types";
+
 /**
  * Defines the ProviderProps interface
  */
@@ -14,6 +16,8 @@ export interface ProviderValues {
   isAuthenticated: boolean;
   login: () => void;
   logout: () => void;
+  user: UserData;
+  setUser: React.Dispatch<React.SetStateAction<UserData>>;
 }
 
 /**
@@ -21,8 +25,17 @@ export interface ProviderValues {
  */
 export const defautValues: ProviderValues = {
   isAuthenticated: false,
+  user: {
+    id: "",
+    name: "",
+    email: "",
+    entries: 0,
+    joined: "",
+  },
   login: () => {},
   logout: () => {},
+
+  setUser: () => {},
 };
 
 /**

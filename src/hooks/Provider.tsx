@@ -4,6 +4,9 @@ import useLocalStorage from "use-local-storage";
  */
 import { context, ProviderProps, ProviderValues } from "./Context";
 
+import { UserData } from "../components/AppController/AppController.types";
+import { useState } from "react";
+
 /**
  * Display AuthProvider
  */
@@ -15,6 +18,17 @@ export const AuthProvider: React.FC<ProviderProps> = (props) => {
     false
   );
 
+  /**
+   * Initializes the user In state
+   */
+  const [user, setUser] = useState<UserData>({
+    id: "",
+    name: "",
+    email: "",
+    entries: 0,
+    joined: "",
+  });
+
   const login = () => {
     setIsAuthenticated(true);
   };
@@ -25,8 +39,10 @@ export const AuthProvider: React.FC<ProviderProps> = (props) => {
 
   const providerValue: ProviderValues = {
     isAuthenticated,
+    user,
     login,
     logout,
+    setUser,
   };
 
   return <Provider value={providerValue}>{children}</Provider>;
