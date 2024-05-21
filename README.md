@@ -21,5 +21,4 @@ Used Tachyons npm package to help build responsive interface.
   <li>Clarifai API</li>
  </ul>
 The backend code is provided below : 
-<a href="https://github.com/valyempire/smart-brain-app-backend" >
-
+<a href="https://github.com/valyempire/smart-brain-app-backend">Smart Brain App Backend</a>
